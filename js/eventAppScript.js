@@ -120,19 +120,27 @@ $(function () {
             }
         });
 
-        //start the XMLHTTP request to load leaderboards.xml, the event
-        //request.onreadystatechange will handle the parsing when its complete
-            loadXML('./data/leaderboards.xml');
+        $('#loadXML').tap(function () {
+            event.preventDefault();
+            loadAll();
+        });
 
-            loadXML('./data/tournament.xml');
-
-            loadXML('./data/scorecards.xml');
-
-            loadXML('./data/pairings.xml');
-
-            loadXML('./data/course.xml');
+        loadAll();
 
     });
+
+
+    loadAll = function () {
+        //loadXML('./data/leaderboards.xml');
+
+        loadXML('./data/tournament.xml');
+
+        //loadXML('./data/scorecards.xml');
+
+        //loadXML('./data/pairings.xml');
+
+        //loadXML('./data/course.xml');
+    };
 
     /*
     doesn't load leaderboard XML onto itself. It initiaties the loading
