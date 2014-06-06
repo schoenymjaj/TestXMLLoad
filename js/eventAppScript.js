@@ -97,6 +97,112 @@ window.onerror = function (msg, url, line) {
     handleAppError(msg, url, line);
 }
 
+loadAll = function () {
+    console.log('func loadAll');
+    //loadXML('./data/leaderboards.xml');
+
+    loadXML('./data/tournament.xml');
+
+    //loadXML('./data/scorecards.xml');
+
+    //loadXML('./data/pairings.xml');
+
+    //loadXML('./data/course.xml');
+};
+
+loadXML = function (filepath) {
+    console.log('func loadXML');
+
+    $.get(filepath, {}, function (xml) {
+        console.log('func $.get');
+
+        console.log('TYPEOF xml:' + typeof xml);
+
+        if (typeof xml == "object") {
+            console.log('its an object');
+            console.log('RAW XML FROM $.GET:' + xml.documentElement.innerHTML);
+
+            xmlText = (new XMLSerializer()).serializeToString(xml);
+        } else {
+            console.log('its a string');
+            xmlText = xml;
+        }
+
+        console.log('loaded filepath -' + filepath + ':' + xmlText.substr(0, 50));
+
+        /*debug statements */
+        xmlAgain = appPropDoc("TRNXMLDoc");
+        console.log('TYPEOF xmlAgain:' + typeof xmlAgain);
+
+        /*
+        console.log(xmlAgain.documentElement.childNodes[1]);
+        console.log('childNodes[1]:' + xmlAgain.documentElement.innerHTML);
+        console.log('childNodes[1]:' + xmlAgain.documentElement.childNodes[1].innerHTML);
+        console.log('Tag - Round:' + xmlAgain.getElementsByTagName("Round"));
+        console.log('Node List Length:' + xmlAgain.getElementsByTagName("Round").length);
+        */
+
+        console.log('loadXML:' + filepath);
+
+    });
+
+}; //loadXML = function (filepath) {
+
+/*
+returns app property
+*/
+appProp = function (propName) {
+    console.log('func appProp:' + propName);
+
+    var propDefault = {
+        "Config-LB-XML-Ind": true, "Config-LB-JSON-Ind": true, "Config-TRN-XML-Ind": true,
+        "Config-SCRD-XML-Ind": true, "Config-PRNG-XML-Ind": true, "Config-CRSE-XML-Ind": true,
+        "Config-ThemeLetter": "h", "Config-MaxList-Nbr": 100,
+        "Config-JQMGridStyle": "{'Leaderboard' : 'jqmList-small', 'Pairings' : 'jqmGrid', 'Scorecard' : 'jqmGrid', 'ScorecardDetail' : 'jqmGrid', 'Tournament' : 'jqmGrid'}",
+        "Config-JQMGridHeaderStyle": "default",
+        "Config-TextFont-Size": 100
+    };
+
+    if (localStorage[propName] != undefined && localStorage[propName] != "undefined") {
+
+        if (localStorage[propName] == "true") { //if boolean true
+            return true;
+        } else if (localStorage[propName] == "false") { //if boolean false
+            return false;
+        } else {
+            return localStorage[propName]; //if not boolean
+        }
+
+    } else { //if undefined
+        return propDefault[propName];  //default value
+    }
+}
+
+/*
+returns app document (xml or jason) property
+*/
+appPropDoc = function (docName) {
+    console.log('func appPropDoc:' + docName);
+
+    var propDocDefault = {
+        "LBXMLDoc": undefined, "LBJSONDoc": undefined, "TRNXMLDoc": undefined, "SCRDXMLDoc": undefined, "PRNGXMLDoc": undefined, "CRSEXMLDoc": undefined
+    };
+
+    if (localStorage[docName] != undefined) {
+        if (docName.substring(docName.length - 7, docName.length) == "JSONDoc") {
+            //JSON DOC
+            return JSON.parse(localStorage[docName]);
+        } else {
+            //XML Doc
+            return StringtoXML(localStorage[docName]);
+        }
+    } else {
+        return propDocDefault[docName];
+    }
+}
+
+
+
 /*
 This function executes after the following events
 pagebeforechange, pagebeforecreate, pagecreate, 
@@ -107,12 +213,14 @@ note: document ready occurs after all these.
 
 
 $(function () {
-
+    console.log('function that runs from load');
     /*
     document ready event
     Start the XMLHttpRequest (download xml and jason files) 
     when document ready event is triggered. Store documents in localStorage
     */
+
+
     $(document).on("ready", function (event) {  //jquery document ready event gets you jquery mobile styles, and data rendered
         console.log('event doc ready');
 
@@ -131,136 +239,7 @@ $(function () {
         //loadAll();
 
     });
-
-    loadAll = function () {
-        //loadXML('./data/leaderboards.xml');
-
-        loadXML('./data/tournament.xml');
-
-        //loadXML('./data/scorecards.xml');
-
-        //loadXML('./data/pairings.xml');
-
-        //loadXML('./data/course.xml');
-    };
-
-    /*
-    doesn't load leaderboard XML onto itself. It initiaties the loading
-    Note: the request.onreadystatechange event loads into LocalStorage
-    */
-    loadXML = function (filepath) {
-        console.log('func loadXML');
-
-        $.get(filepath, {}, function (xml) {
-
-            console.log('TYPEOF xml:' + typeof xml);
-
-            if (typeof xml == "object") {
-                console.log('its an object');
-                console.log('RAW XML FROM $.GET:' + xml.documentElement.innerHTML);
-
-                xmlText = (new XMLSerializer()).serializeToString(xml);
-            } else {
-                console.log('its a string');
-                xmlText = xml;
-            }
-
-
-            console.log('loaded filepath -' + filepath + ':' + xmlText.substr(0, 50));
-
-            switch (filepath) {
-                case "./data/leaderboards.xml":
-                    localStorage["LBXMLDoc"] = xmlText;
-                    break;
-                case "./data/tournament.xml":
-                    localStorage["TRNXMLDoc"] = xmlText;
-
-                    /*debug statements */
-                    xmlAgain = appPropDoc("TRNXMLDoc");
-                    console.log('TYPEOF xmlAgain:' + typeof xmlAgain);
-
-                    /*
-                    console.log(xmlAgain.documentElement.childNodes[1]);
-                    console.log('childNodes[1]:' + xmlAgain.documentElement.innerHTML);
-                    console.log('childNodes[1]:' + xmlAgain.documentElement.childNodes[1].innerHTML);
-                    console.log('Tag - Round:' + xmlAgain.getElementsByTagName("Round"));
-                    console.log('Node List Length:' + xmlAgain.getElementsByTagName("Round").length);
-                    */
-
-                    break;
-                case "./data/scorecards.xml":
-                    localStorage["SCRDXMLDoc"] = xmlText;
-                    break;
-                case "./data/pairings.xml":
-                    localStorage["PRNGXMLDoc"] = xmlText;
-                    break;
-                case "./data/course.xml":
-                    localStorage["CRSEXMLDoc"] = xmlText;
-                    break;
-                default:
-                    alert('Unexpected XML doc to load - Type: ' + filepath);
-                    break;
-
-            } //switch(filepath)
-            console.log('loadXML:' + filepath);
-
-        });
-
-    }; //loadXML = function (filepath) {
-
-    /*
-    returns app property
-    */
-    appProp = function (propName) {
-        console.log('func appProp:' + propName);
-
-        var propDefault = {
-            "Config-LB-XML-Ind": true, "Config-LB-JSON-Ind": true, "Config-TRN-XML-Ind": true,
-            "Config-SCRD-XML-Ind": true, "Config-PRNG-XML-Ind": true, "Config-CRSE-XML-Ind": true,
-            "Config-ThemeLetter": "h", "Config-MaxList-Nbr": 100,
-            "Config-JQMGridStyle": "{'Leaderboard' : 'jqmList-small', 'Pairings' : 'jqmGrid', 'Scorecard' : 'jqmGrid', 'ScorecardDetail' : 'jqmGrid', 'Tournament' : 'jqmGrid'}",
-            "Config-JQMGridHeaderStyle": "default",
-            "Config-TextFont-Size": 100
-        };
-
-        if (localStorage[propName] != undefined && localStorage[propName] != "undefined") {
-
-            if (localStorage[propName] == "true") { //if boolean true
-                return true;
-            } else if (localStorage[propName] == "false") { //if boolean false
-                return false;
-            } else {
-                return localStorage[propName]; //if not boolean
-            }
-
-        } else { //if undefined
-            return propDefault[propName];  //default value
-        }
-    }
-
-    /*
-    returns app document (xml or jason) property
-    */
-    appPropDoc = function (docName) {
-        console.log('func appPropDoc:' + docName);
-
-        var propDocDefault = {
-            "LBXMLDoc": undefined, "LBJSONDoc": undefined, "TRNXMLDoc": undefined, "SCRDXMLDoc": undefined, "PRNGXMLDoc": undefined, "CRSEXMLDoc": undefined
-        };
-
-        if (localStorage[docName] != undefined) {
-            if (docName.substring(docName.length - 7, docName.length) == "JSONDoc") {
-                //JSON DOC
-                return JSON.parse(localStorage[docName]);
-            } else {
-                //XML Doc
-                return StringtoXML(localStorage[docName]);
-            }
-        } else {
-            return propDocDefault[docName];
-        }
-    }
-
+  
 });
 
 
