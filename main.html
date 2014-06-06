@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Event App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- WEINRE SERVER - REMOTE DEBUGGING -->
+    <script src="http://169.254.80.80:8080/target/target-script-min.js#anonymous"></script>
+    <!-- the three things that jQuery Mobile needs to work -->
+    <!--custom themes design using themeroller be referenced before the jquery.com/mobile css-->
+    <link rel="stylesheet" href="./css/themes/MnsTestTheme1.4.2.min.css" />
+    <link rel="stylesheet" href="./css/themes/jquery.mobile.icons.min.css" />
+
+    <!-- CDN jquery mobile CSS
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css" />
+    -->
+    <link rel="stylesheet" href="./js/jqm/jquery.mobile.structure-1.4.2.min.css" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- CDN jquery -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+      
+    <script src="./js/jquery/jquery-1.10.2.min.js"></script>
+
+    <script src="./js/jqm-config.js"></script>
+
+    <!-- CDN jquery mobile
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        -->
+    <script src="./js/jqm/jquery.mobile-1.4.2.min.js"></script>
+
+    <!-- PhoneGap for debug -->
+    <script src="phonegap.js"></script>
+
+</head>
+<body data-env="development">
+
+    <!-- ================= Home ======================== -->
+    <section id="home" data-role="page" data-title="LPGA Event App">
+        <header data-role="header" data-position="fixed">
+            <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
+            <a href="#menu" data-icon="bars" data-iconpos="notext">Menu</a>
+            <h1></h1>
+        </header>
+        <article data-role="content" style="margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px">
+            <img src="./images/shotfromfairwayBckgrnd.jpg" style="width: 100%; height: 100%; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
+            <img src="./images/lpgaLogoWhite.jpg" style="width: 100%; height: 100%; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
+        </article>
+
+    </section>
+
+    <script src="./js/eventScript.js"></script>
+    <script src="./js/json/jsonpath-0.8.0.js"></script>
+    <script src="./js/eventAppScript.js"></script>
+</body>
+</html>
