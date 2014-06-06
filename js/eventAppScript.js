@@ -211,15 +211,9 @@ note: document ready occurs after all these.
 */
 
 
-
+/*
 $(function () {
     console.log('function that runs from load');
-    /*
-    document ready event
-    Start the XMLHttpRequest (download xml and jason files) 
-    when document ready event is triggered. Store documents in localStorage
-    */
-
 
     $(document).on("ready", function (event) {  //jquery document ready event gets you jquery mobile styles, and data rendered
         console.log('event doc ready');
@@ -241,6 +235,7 @@ $(function () {
     });
   
 });
+*/
 
 
 
