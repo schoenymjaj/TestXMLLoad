@@ -103,6 +103,9 @@ pagebeforechange, pagebeforecreate, pagecreate,
 pageinit, pagebeforeshow, pageshow, pagechange
 note: document ready occurs after all these.
 */
+
+
+
 $(function () {
 
     /*
@@ -120,15 +123,14 @@ $(function () {
             }
         });
 
-        $('#loadXML').tap(function () {
+        $(document).on('tap','#loadXML', function () {
             event.preventDefault();
             loadAll();
         });
 
-        loadAll();
+        //loadAll();
 
     });
-
 
     loadAll = function () {
         //loadXML('./data/leaderboards.xml');
