@@ -152,8 +152,16 @@ $(function () {
         $.get(filepath, {}, function (xml) {
 
             console.log('TYPEOF:' + typeof xml);
-            console.log('RAW XML FROM $.GET:' + xml.documentElement.innerHTML);
-            xmlText = (new XMLSerializer()).serializeToString(xml);
+
+            if (typeof xml == "object") {
+                console.log('RAW XML FROM $.GET:' + xml.documentElement.innerHTML);
+
+                xmlText = (new XMLSerializer()).serializeToString(xml);
+            } else {
+                xmlText = xml;
+            }
+
+
             console.log('loaded filepath -' + filepath + ':' + xmlText.substr(0, 50));
 
             switch (filepath) {
