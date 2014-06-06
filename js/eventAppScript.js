@@ -35,7 +35,12 @@ Windows handler of all errors
 */
 window.onerror = function (msg, url, line) {
     console.log('func oneerror');
-    handleAppError(msg, url, line);
+
+    if (typeof msg == 'object') {
+        alert ('onerror handled an error with message an Object')
+    } else {
+        handleAppError(msg, url, line);
+    }
 }
 
 
