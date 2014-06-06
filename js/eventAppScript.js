@@ -151,13 +151,15 @@ $(function () {
 
         $.get(filepath, {}, function (xml) {
 
-            console.log('TYPEOF:' + typeof xml);
+            console.log('TYPEOF xml:' + typeof xml);
 
             if (typeof xml == "object") {
+                console.log('its an object');
                 console.log('RAW XML FROM $.GET:' + xml.documentElement.innerHTML);
 
                 xmlText = (new XMLSerializer()).serializeToString(xml);
             } else {
+                console.log('its a string');
                 xmlText = xml;
             }
 
@@ -173,11 +175,15 @@ $(function () {
 
                     /*debug statements */
                     xmlAgain = appPropDoc("TRNXMLDoc");
+                    console.log('TYPEOF xmlAgain:' + typeof xmlAgain);
+
+                    /*
                     console.log(xmlAgain.documentElement.childNodes[1]);
                     console.log('childNodes[1]:' + xmlAgain.documentElement.innerHTML);
                     console.log('childNodes[1]:' + xmlAgain.documentElement.childNodes[1].innerHTML);
                     console.log('Tag - Round:' + xmlAgain.getElementsByTagName("Round"));
                     console.log('Node List Length:' + xmlAgain.getElementsByTagName("Round").length);
+                    */
 
                     break;
                 case "./data/scorecards.xml":
