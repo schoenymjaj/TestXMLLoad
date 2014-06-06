@@ -8,18 +8,9 @@ localStorage["CRSEXMLDoc"] - Course XML Doc
 */
 
 /*
-JavaScript object to support load data configuration
-*/
-DataConfigObj = function (LBXMLInd, LBJSONInd, TRNXMLInd, SCRDXMLInd, PRNGXMLInd) {
-    this.LeaderXMLInd = LBXMLInd;
-    this.LeaderJSONInd = LBJSONInd;
-    this.TournXMLInd = TRNXMLInd;
-    this.SCRDXMLInd = SCRDXMLInd;
-    this.PRNGXMLInd = PRNGXMLInd;
-}
-/*
 Converts XML text and returns an XML document
 */
+/*
 StringtoXML = function (text) {
     console.log('func StringtoXML');
     if (window.ActiveXObject) {
@@ -32,10 +23,12 @@ StringtoXML = function (text) {
     }
     return doc;
 }
+*/
 
 /*
 Var to determine mobile device
 */
+/*
 var isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -56,6 +49,7 @@ var isMobile = {
         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
     }
 };
+*/
 
 /*
 display error page
@@ -154,6 +148,7 @@ loadXML = function (filepath) {
 /*
 returns app property
 */
+/*
 appProp = function (propName) {
     console.log('func appProp:' + propName);
 
@@ -180,10 +175,12 @@ appProp = function (propName) {
         return propDefault[propName];  //default value
     }
 }
+*/
 
 /*
 returns app document (xml or jason) property
 */
+/*
 appPropDoc = function (docName) {
     console.log('func appPropDoc:' + docName);
 
@@ -203,14 +200,6 @@ appPropDoc = function (docName) {
         return propDocDefault[docName];
     }
 }
-
-
-
-/*
-This function executes after the following events
-pagebeforechange, pagebeforecreate, pagecreate, 
-pageinit, pagebeforeshow, pageshow, pagechange
-note: document ready occurs after all these.
 */
 
 
