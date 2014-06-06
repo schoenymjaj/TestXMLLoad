@@ -126,7 +126,10 @@ loadXML = function (filepath) {
 
         if (typeof xml == "object") {
             console.log('its an object');
-            console.log('RAW XML FROM $.GET:' + xml.documentElement.innerHTML);
+            console.log('$.type:' + $.type(xml))
+            console.log('object name:' + xml.constructor.name);
+            console.log('RAW XML FROM $.GET INNERHTML:' + xml.documentElement.innerHTML);
+            console.log('RAW XML FROM $.GET HTML:' + xml.html)
 
 
             xmlText = (new XMLSerializer()).serializeToString(xml);
@@ -140,8 +143,11 @@ loadXML = function (filepath) {
 
         //debug statements
         xmlAgain = appPropDoc("TRNXMLDoc");
+        console.log('$.type:' + $.type(xmlAgain))
         console.log('TYPEOF xmlAgain:' + typeof xmlAgain);
-        console.log('PULL XML FROM LOCAL STORAGE:' + xml.documentElement.innerHTML);
+        console.log('object name:' + xmlAgain.constructor.name);
+        console.log('PULL XML FROM LOCAL STORAGE:' + xmlAgain.documentElement.innerHTML);
+        console.log('PULL XML FROM LOCAL STORAGE(html):' + xmlAgain.html);
 
         
         //console.log(xmlAgain.documentElement.childNodes[1]);
