@@ -112,7 +112,7 @@ loadAll = function () {
 
 
 loadXML = function (filepath) {
-    console.log('func loadXML');
+    console.log('func NEW loadXML');
 
     $.get(filepath, {}, function (xml) {
         console.log('func $.get');
@@ -144,7 +144,8 @@ loadXML = function (filepath) {
 
         console.log('loadXML:' + filepath);
 
-    });
+    },'xml');
+
 
 }; //loadXML = function (filepath) {
 
