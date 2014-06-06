@@ -97,6 +97,7 @@ window.onerror = function (msg, url, line) {
     handleAppError(msg, url, line);
 }
 
+/*
 loadAll = function () {
     console.log('func loadAll');
     //loadXML('./data/leaderboards.xml');
@@ -109,7 +110,9 @@ loadAll = function () {
 
     //loadXML('./data/course.xml');
 };
+*/
 
+/*
 loadXML = function (filepath) {
     console.log('func loadXML');
 
@@ -130,23 +133,23 @@ loadXML = function (filepath) {
 
         console.log('loaded filepath -' + filepath + ':' + xmlText.substr(0, 50));
 
-        /*debug statements */
+        //debug statements
         xmlAgain = appPropDoc("TRNXMLDoc");
         console.log('TYPEOF xmlAgain:' + typeof xmlAgain);
 
-        /*
-        console.log(xmlAgain.documentElement.childNodes[1]);
-        console.log('childNodes[1]:' + xmlAgain.documentElement.innerHTML);
-        console.log('childNodes[1]:' + xmlAgain.documentElement.childNodes[1].innerHTML);
-        console.log('Tag - Round:' + xmlAgain.getElementsByTagName("Round"));
-        console.log('Node List Length:' + xmlAgain.getElementsByTagName("Round").length);
-        */
+        
+        //console.log(xmlAgain.documentElement.childNodes[1]);
+        //console.log('childNodes[1]:' + xmlAgain.documentElement.innerHTML);
+        //console.log('childNodes[1]:' + xmlAgain.documentElement.childNodes[1].innerHTML);
+        //console.log('Tag - Round:' + xmlAgain.getElementsByTagName("Round"));
+        //console.log('Node List Length:' + xmlAgain.getElementsByTagName("Round").length);
 
         console.log('loadXML:' + filepath);
 
     });
 
 }; //loadXML = function (filepath) {
+*/
 
 /*
 returns app property
