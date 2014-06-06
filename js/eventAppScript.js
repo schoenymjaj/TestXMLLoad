@@ -14,10 +14,14 @@ Converts XML text and returns an XML document
 StringtoXML = function (text) {
     console.log('func StringtoXML');
     if (window.ActiveXObject) {
+        console.log('window.ActiveXObject');
+        console.log('window.ActiveXObject:' + text.substr(0, 50));
         var doc = new ActiveXObject('Microsoft.XMLDOM');
         doc.async = 'false';
         doc.loadXML(text);
     } else {
+        console.log('new DOMParser');
+        console.log('new DOMParser:' + text.substr(0, 50));
         var parser = new DOMParser();
         var doc = parser.parseFromString(text, 'text/xml');
     }
@@ -114,6 +118,7 @@ loadAll = function () {
 loadXML = function (filepath) {
     console.log('func NEW loadXML');
 
+
     $.get(filepath, {}, function (xml) {
         console.log('func $.get');
 
@@ -123,6 +128,7 @@ loadXML = function (filepath) {
             console.log('its an object');
             console.log('RAW XML FROM $.GET:' + xml.documentElement.innerHTML);
 
+
             xmlText = (new XMLSerializer()).serializeToString(xml);
         } else {
             console.log('its a string');
@@ -130,10 +136,12 @@ loadXML = function (filepath) {
         }
 
         console.log('loaded filepath -' + filepath + ':' + xmlText.substr(0, 50));
+        localStorage["TRNXMLDoc"] = xmlText;
 
         //debug statements
         xmlAgain = appPropDoc("TRNXMLDoc");
         console.log('TYPEOF xmlAgain:' + typeof xmlAgain);
+        console.log('PULL XML FROM LOCAL STORAGE:' + xml.documentElement.innerHTML);
 
         
         //console.log(xmlAgain.documentElement.childNodes[1]);
@@ -148,6 +156,20 @@ loadXML = function (filepath) {
 
 
 }; //loadXML = function (filepath) {
+
+/*
+function loadXMLDoc(dname) {
+    if (window.XMLHttpRequest) {
+        xhttp = new XMLHttpRequest();
+    }
+    else {
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET", dname, false);
+    xhttp.send();
+    return xhttp.responseXML;
+}
+*/
 
 
 /*
