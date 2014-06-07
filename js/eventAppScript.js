@@ -129,8 +129,9 @@ loadXML = function (filepath) {
             console.log('$.type:' + $.type(xml))
             console.log('object name:' + xml.constructor.name);
             console.log('RAW XML FROM $.GET INNERHTML:' + xml.documentElement.innerHTML);
-            console.log('RAW XML FROM $.GET HTML:' + xml.html)
-
+            console.log('RAW XML FROM $.GET HTML:' + xml.html);
+            console.log('Object JQuery StartDate' + $("Tournament[ID='" + 27828 + "'] Round[ID='" + 3 + "']", xml).attr("StartDate"));
+            console.log('LocalStorage getElementsByTagName(EndDate)=' + xml.getElementsByTagName("Round")[2].getAttribute('EndDate'));
 
             xmlText = (new XMLSerializer()).serializeToString(xml);
         } else {
@@ -148,6 +149,8 @@ loadXML = function (filepath) {
         console.log('object name:' + xmlAgain.constructor.name);
         console.log('PULL XML FROM LOCAL STORAGE:' + xmlAgain.documentElement.innerHTML);
         console.log('PULL XML FROM LOCAL STORAGE(html):' + xmlAgain.html);
+        console.log('LocalStorage JQuery StartDate' + $("Tournament[ID='" + 27828 + "'] Round[ID='" + 3 + "']", xmlAgain).attr("StartDate"));
+        console.log('LocalStorage getElementsByTagName(EndDate)=' + xmlAgain.getElementsByTagName("Round")[2].getAttribute('EndDate'));
 
         
         //console.log(xmlAgain.documentElement.childNodes[1]);
